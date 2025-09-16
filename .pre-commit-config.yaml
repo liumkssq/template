@@ -27,6 +27,8 @@ repos:
   hooks:
   - id: git-cliff
     name: git-cliff changelog generator
-    entry: git-cliff -c .gitcliff.toml -o CHANGELOG.md
+    entry: bash -c "git-cliff -c .gitcliff.toml -o CHANGELOG.md && git add CHANGELOG.md"
     language: system
     pass_filenames: false
+    always_run: true
+    stages: [commit]
