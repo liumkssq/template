@@ -1,0 +1,29 @@
+project_name: myapp
+builds:
+- id: myapp
+  binary: myapp
+  goos:
+  - linux
+  - darwin
+  - windows
+  goarch:
+  - amd64
+  - arm64
+  env:
+  - CGO_ENABLED=0
+  ldflags:
+  - -s -w -X main.version={{.Version}}
+archives:
+- id: default
+  format: tar.gz
+  files:
+  - LICENSE
+  - README.md
+  - CHANGELOG.md
+release:
+  github:
+    owner: yourorg
+    name: myapp
+changelog:
+  use: git-cliff
+  file: CHANGELOG.md

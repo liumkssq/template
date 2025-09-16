@@ -1,0 +1,23 @@
+repos:
+- repo: local
+  hooks:
+  - id: go-fmt
+    name: gofumpt
+    entry: sh -c 'gofumpt -w . || { echo "gofumpt failed"; exit 1; }'
+    language: system
+    files: \.go$
+  - id: go-imports
+    name: goimports
+    entry: sh -c 'goimports -w . || { echo "goimports failed"; exit 1; }'
+    language: system
+    files: \.go$
+  - id: golangci-lint
+    name: golangci-lint
+    entry: sh -c 'golangci-lint run --fix || golangci-lint run'
+    language: system
+    files: \.go$
+  - id: go-test
+    name: go test
+    entry: sh -c 'go test ./...'
+    language: system
+    files: ''
